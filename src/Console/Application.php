@@ -598,8 +598,8 @@ class Application
         foreach ($payslips as $payslip) {
             printf("│ %-4d │ %-10s │ %-22s │ R%9s │ R%9s │ R%9s │ %-8s │\n",
                 $payslip->getId(),
-                substr($payslip->getEmployeeId(), 0, 10),
-                substr($payslip->getEmployeeId() . '', 0, 22),
+                $payslip->getEmployeeNumber(),
+                substr($payslip->getFullName(), 0, 22),
                 number_format($payslip->getGrossPay(), 2),
                 number_format($payslip->getTotalDeductions(), 2),
                 number_format($payslip->getNetPay(), 2),
@@ -952,7 +952,11 @@ class Application
     {
         echo $prompt . ($default !== '' ? " [{$default}]" : '') . ': ';
         $handle = fopen('php://stdin', 'r');
-        $input = trim(fgets($handle));
+        $line = fgets($handle);
+        if ($line === false) {
+            $this->exit();
+        }
+        $input = trim($line);
         return $input !== '' ? $input : $default;
     }
 

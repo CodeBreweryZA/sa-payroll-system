@@ -25,6 +25,10 @@ class Payslip
     private float $netPay;
     private float $employerCost;
     private string $status; // 'draft', 'approved', 'paid'
+    private string $employeeNumber;
+    private string $firstName;
+    private string $lastName;
+    private string $periodName;
     private string $createdAt;
     private string $updatedAt;
 
@@ -51,6 +55,10 @@ class Payslip
         $this->netPay = $data['net_pay'] ?? 0.0;
         $this->employerCost = $data['employer_cost'] ?? 0.0;
         $this->status = $data['status'] ?? 'draft';
+        $this->employeeNumber = $data['employee_number'] ?? '';
+        $this->firstName = $data['first_name'] ?? '';
+        $this->lastName = $data['last_name'] ?? '';
+        $this->periodName = $data['period_name'] ?? '';
         $this->createdAt = $data['created_at'] ?? date('Y-m-d H:i:s');
         $this->updatedAt = $data['updated_at'] ?? date('Y-m-d H:i:s');
     }
@@ -77,6 +85,11 @@ class Payslip
     public function getNetPay(): float { return $this->netPay; }
     public function getEmployerCost(): float { return $this->employerCost; }
     public function getStatus(): string { return $this->status; }
+    public function getEmployeeNumber(): string { return $this->employeeNumber; }
+    public function getFirstName(): string { return $this->firstName; }
+    public function getLastName(): string { return $this->lastName; }
+    public function getFullName(): string { return $this->firstName . ' ' . $this->lastName; }
+    public function getPeriodName(): string { return $this->periodName; }
     public function getCreatedAt(): string { return $this->createdAt; }
     public function getUpdatedAt(): string { return $this->updatedAt; }
 
