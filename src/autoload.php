@@ -2,7 +2,7 @@
 
 spl_autoload_register(function ($class) {
     $prefix = 'Payroll\\';
-    $baseDir = __DIR__ . '/src/';
+    $baseDir = __DIR__ . '/';
     
     $len = strlen($prefix);
     if (strncmp($class, $prefix, $len) !== 0) {
